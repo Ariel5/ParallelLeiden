@@ -5,13 +5,13 @@
 
 
 int main() {
-    Graph g = SNAPGraphReader().read("../LFR0,7.el");
+    Graph g = SNAPGraphReader().read("/home/ariel/prog/Thesis-Graph-Data/twitch.csv");
     ParallelLeiden pl(g);
     Aux::setNumberOfThreads(8);
     auto tmr = Aux::Timer();
     tmr.start();
     pl.run();
-    cout << tmr.elapsedMilliseconds() / 1000.0 << " " << Modularity().getQuality(pl.getPartition(), g) << endl;
+    cout << "Elapsed time (s): " << tmr.elapsedMilliseconds() / 1000.0 << " | Modularity Quality: " << Modularity().getQuality(pl.getPartition(), g) << endl;
     return 0;
 }
 
